@@ -11,23 +11,50 @@
   <body>
 
     <div class="container text-center mt-5">
-      <h1> Let's AJAX! ⚔︎</h1>
+      <h1> Let's Stimulus! ⚡️</h1>
 
-      <form id="search-movies" class="form-inline d-flex justify-content-center m-5">
-        <input id="keyword" type="text" class="form-control" placeholder="Find movies">
-        <input id="submit" type="submit" class="btn btn-primary form-control" value="Search">
-      </form>
+      <div data-controller="disable-button">
 
-      <form class="form-inline" id="form">
-        <input class="form-control" type="email" id="email" value="eve.holt@reqres.in">
-        <input class="form-control" type="password" id="password" value="pistol">
-        <input class="btn btn-primary btn-block" type="submit">
-      </form>
+        <button 
+          class="btn btn-primary btn-lg"
+          data-action="click->disable-button#disable"
+          data-disable-button-target="button"
+        >
+        Click me!
+        </button>
 
-      <ul class="list-inline mt-5" id="results">
-      </ul>
+        <button 
+          class="btn btn-outline-primary d-none"
+          data-disable-button-target="reset"
+          data-action="click->disable-button#enable"
+        >
+          Reset
+        </button>
+      </div>
 
-      <!-- <button id="click-me" class="btn btn-primary btn-lg m-5">Click me!</button> -->
+      <div data-controller="movies">
+        <form id="search-movies" class="form-inline d-flex justify-content-center m-5">
+          <input 
+            id="keyword" 
+            type="text" 
+            class="form-control" 
+            placeholder="Find movies"
+            data-movies-target="input">
+          <input 
+            id="submit" 
+            type="submit" 
+            class="btn btn-primary form-control" 
+            value="Search"
+            data-action="click->movies#searchMovies">
+        </form>
+
+        <ul 
+          class="list-inline mt-5" 
+          id="results"
+          data-movies-target="results"
+          data-controller="sortable">
+        </ul>
+      </div>
 
     </div>
 
